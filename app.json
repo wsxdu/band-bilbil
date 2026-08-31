@@ -1,0 +1,12 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/setting/setting"
+  ],
+  "window": {
+    "backgroundTextStyle: light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "哔哩哔哩",
+    "navigationBarTextStyle": "black"
+  }
+}

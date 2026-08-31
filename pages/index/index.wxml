@@ -1,0 +1,62 @@
+<view class="index-page">
+  <!-- 头部区域：用户信息 + 刷新按钮 + 蓝牙控制 -->
+  <view class="header-bar">
+    <view class="user-info" wx:if="{{biliLoggedIn}}">
+      <image 
+        class="user-avatar" 
+        src="{{biliAvatar}}" 
+        mode="aspectFill"
+        catchtouchmove
+      />
+      <view class="user-name">{{biliUsername}}</view>
+    </view>
+    
+    <view class="user-info" wx:else="{{!biliLoggedIn}}">
+      <text class="guest-text">游客</text>
+    </view>
+    
+    <view class="header-btns">
+      <view class="refresh-btn" bindtap="onRefresh">
+        <text>刷新视频</text>
+      </view>
+      <view class="ble-btn" bindtap="sendBleMessage">
+        <text>BLE</text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 视频列表 -->
+  <view class="video-list">
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{!videos || videos.length === 0}}">
+      <view class="empty-icon">📺</view>
+      <text>暂无视频</text>
+      <text>点击上方「刷新视频」获取</text>
+    </view>
+    
+    <!-- 视频项 -->
+    <view class="video-item" wx:for="{{videos}}" wx:key="id" catchtouchmove>
+      <view class="video-cover" bindtap="onVideoTap" data-index="{{index}}">
+        <image 
+          class="cover-image" 
+          src="{{item.cover}}" 
+          mode="widthFix"
+        />
+      </view>
+      <view class="video-info">
+        <text class="video-title">{{item.title}}</text>
+        <text class="video-bid">BV{{item.bid}}</text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 禁止观看提示 -->
+  <view class="restriction-notice" wx:if="{{showRestriction}}">
+    <view class="restriction-bg">
+      <view class="restriction-content">
+        <text>预览模式</text>
+        <text>点击仅显示视频信息，禁止完整播放</text>
+      </view>
+    </view>
+  </view>
+</view>

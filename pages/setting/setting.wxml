@@ -1,0 +1,41 @@
+<view class="setting-page">
+  <!-- 头部 -->
+  <view class="setting-header">
+    <view class="header-title">设置</view>
+  </view>
+  
+  <!-- 内容区 -->
+  <view class="setting-content">
+    <!-- 用户信息区 -->
+    <view class="user-info-section" wx:if="{{biliLoggedIn}}">
+      <view class="user-avatar-wrap">
+        <image class="user-avatar" src="{{biliAvatar}}" mode="aspectFill" />
+      </view>
+      <view class="user-name">{{biliUsername}}</view>
+    </view>
+    
+    <view class="user-info-section" wx:else="{{!biliLoggedIn}}">
+      <view class="guest-info">
+        <text>游客</text>
+      </view>
+    </view>
+    
+    <!-- 操作按钮区 -->
+    <view class="action-buttons">
+      <view class="action-btn" bindtap="bindBiliLogin">
+        <view class="action-icon">🔐</view>
+        <view class="action-label">Bilibili 登录</view>
+      </view>
+      
+      <view class="action-btn" bindtap="bindBiliLogout" wx:if="{{biliLoggedIn}}">
+        <view class="action-icon">🔓</view>
+        <view class="action-label">退出登录</view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 底部说明 -->
+  <view class="setting-footer">
+    <text>哔哩哔哩小程序 v1.0.0</text>
+  </view>
+</view>
